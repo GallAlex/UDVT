@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using System;
 
 /// <summary>
 /// Class stores and draws elements of arbitrarily 2D/3D visualizations (Axis, Ticks and DataMarks).
@@ -79,6 +80,10 @@ public class VisContainer
     {
         DataAxis axis = new DataAxis(xyzOffset[(int)axisDirection]);
         Scale scale = CreateAxisScale(minMaxValues, xyzOffset[(int)axisDirection]);
+
+        xyzTicks[(int)axisDirection] = true 
+            ? (int)Math.Round(Math.Sqrt(minMaxValues.Length)) //Square-root choice
+            : (int)Math.Round(Math.Log(minMaxValues.Length, 2)) + 1; //Sturges' formula
 
         axis.CreateAxis(axisContainer.transform, axisLabel, scale, axisDirection, xyzTicks[(int)axisDirection]);
         dataAxisList.Add(axis);
@@ -194,7 +199,8 @@ public class VisContainer
                     channel.position.y = (float)channelScale[setChannel.Key].GetScaledValue(setChannel.Value[valueIndex]);
                     break;
                 case VisChannel.ZPos:
-                    channel.position.z = (float)channelScale[setChannel.Key].GetScaledValue(setChannel.Value[valueIndex]);
+                    channel.position.z = 0;
+                    //channel.position.z = (float)channelScale[setChannel.Key].GetScaledValue(setChannel.Value[valueIndex]);
                     break;
                 case VisChannel.XSize:
                     channel.size.x = (float)channelScale[setChannel.Key].GetScaledValue(setChannel.Value[valueIndex]);
@@ -203,7 +209,8 @@ public class VisContainer
                     channel.size.y = (float)channelScale[setChannel.Key].GetScaledValue(setChannel.Value[valueIndex]);
                     break;
                 case VisChannel.ZSize:
-                    channel.size.z = (float)channelScale[setChannel.Key].GetScaledValue(setChannel.Value[valueIndex]);
+                    //channel.size.z = (float)channelScale[setChannel.Key].GetScaledValue(setChannel.Value[valueIndex]);
+                    channel.size.z = 0;
                     break;
                 case VisChannel.XRotation:
                     channel.rotation.x = (float)channelScale[setChannel.Key].GetScaledValue(setChannel.Value[valueIndex]);
@@ -212,7 +219,7 @@ public class VisContainer
                     channel.rotation.y = (float)channelScale[setChannel.Key].GetScaledValue(setChannel.Value[valueIndex]);
                     break;
                 case VisChannel.ZRotation:
-                    channel.rotation.z = (float)channelScale[setChannel.Key].GetScaledValue(setChannel.Value[valueIndex]);
+                    channel.rotation.z = 0; // (float)channelScale[setChannel.Key].GetScaledValue(setChannel.Value[valueIndex]);
                     break;
                 case VisChannel.Color:
                     channel.color = ScaleColor.GetInterpolatedColor(setChannel.Value[valueIndex], setChannel.Value.Min(), setChannel.Value.Max(), colorScheme);

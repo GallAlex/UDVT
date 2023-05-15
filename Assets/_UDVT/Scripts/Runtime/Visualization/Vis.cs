@@ -10,7 +10,8 @@ using UnityEngine;
 public enum VisType
 {
     Scatterplot,
-    NumberOfVisTypes
+    NumberOfVisTypes,
+    Histogram
 }
 
 /// <summary>
@@ -202,6 +203,8 @@ public class Vis
             default:
             case VisType.Scatterplot:
                 return new VisScatterplot();
+            case VisType.Histogram:
+                return new VisHistogram();
         }
     }
 

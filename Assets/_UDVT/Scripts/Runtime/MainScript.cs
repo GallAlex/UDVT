@@ -51,8 +51,11 @@ public class MainScript : MonoBehaviour
 
 
         //## 03: Visualize Dataset
+        var visType = false
+            ? VisType.Scatterplot
+            : VisType.Histogram;
 
-        vis = Vis.GetSpecificVisType(VisType.Scatterplot);
+        vis = Vis.GetSpecificVisType(visType);
         vis.AppendData(dataSet);
         vis.CreateVis(this.gameObject);
     }
