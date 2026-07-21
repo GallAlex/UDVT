@@ -17,4 +17,4 @@ Dependencies and versions utilized:
 Developed and maintained by Alexander Gall
 
 Contact: [alexander.gall@uni-passau.de](alexander.gall@uni-passau.de)
-Contact: [LinkedIn](https://www.linkedin.com/in/alexander-gall-1b7039242/)
+Contact: [LinkedIn](www.linkedin.com/in/gallalexander)
